@@ -25,7 +25,7 @@ def main(request):
         elif request.path == "/TESTAPI/unitTests/":
             results = Popen("python manage.py test Login".split(),stderr=PIPE,shell=True).communicate()[1]
             char = results.rfind("Ran")+4
-            numTests = int(results[char:char+2])
+            numTests = results[char:char+2]
             echar = results.rfind("failures=")+7
             if echar < 7:
                 numFailed = 0
