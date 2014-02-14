@@ -26,11 +26,11 @@ def main(request):
             results = Popen("python manage.py test Login".split(),stderr=PIPE,shell=True).communicate()[1]
             char = results.rfind("Ran")+4
             numTests = int(results[char:char+2])
-            echar = int(results.rfind("failures=")+7)
+            echar = results.rfind("failures=")+7
             if echar < 7:
                 numFailed = 0
             else :
-                numFailed = results[echar:echar+2]
+                numFailed = int(results[echar:echar+1])
             output = ""
             return HttpResponse(json.dumps({"nrFailed":numFailed,"output":results,"totalTests":numTests}),content_type='application/json', status=200)
     else:
