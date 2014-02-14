@@ -30,7 +30,7 @@ def main(request):
             if echar < 7:
                 numFailed = 0
             else :
-                numFailed = int(results[echar:echar+1])
+                numFailed = results[echar:echar+1]
             output = ""
             return HttpResponse(json.dumps({"nrFailed":numFailed,"output":results,"totalTests":numTests}),content_type='application/json', status=200)
     else:
