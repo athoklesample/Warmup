@@ -23,7 +23,7 @@ def main(request):
         if request.path =="/TESTAPI/resetFixture/":
             return HttpResponse(json.dumps({"errCode":UsersModel().TESTAPI_resetFixture()}),content_type='application/json', status=200)
         elif request.path == "/TESTAPI/unitTests/":
-            results = Popen("./manage.py test Login".split(),stderr=PIPE,shell=True).communicate()[1]
+            results = Popen("heroku run python manage.py test Login".split(),stderr=PIPE,shell=True).communicate()[1]
             char = results.rfind("Ran")+4
             numTests = results[char:char+2]
             echar = results.rfind("failures=")+7
