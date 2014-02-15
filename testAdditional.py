@@ -39,6 +39,7 @@ class TestLogin(testLib.RestTestCase):
     ERR_BAD_USERNAME    = -3     #: (for add, or login) invalid user name (only empty string is invalid for now)
     ERR_BAD_PASSWORD    = -4
 
+
     def testloginSuccess(self):
         init = self.makeRequest("/user/add/",method="POST", data = { 'user':'test3','password':'1234'})
         response = self.makeRequest("/user/login/",method="POST", data = { 'user':'test3','password':'1234'})
