@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from Login.models import UsersModel
 from django.template import RequestContext
@@ -34,6 +34,6 @@ def main(request):
             output = ""
             return HttpResponse(json.dumps({"nrFailed":numFailed,"output":results,"totalTests":numTests}),content_type='application/json', status=200)
     else:
-        return render('Login/client.html')
+        return render_to_response('Login/client.html',{})
 
 
