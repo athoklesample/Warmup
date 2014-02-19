@@ -7,10 +7,14 @@
 				$.ajax({
 					type: "POST",
 					url: "http://stark-sands-5954.herokuapp.com/user/login/",
-					data: {user: "alex", password: "test"}
+					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {
-						alert(msg.count);
+						$("#count").html("You have logged in "+msg.count+" times.");
+						$("#Login").hide();
+						$("#Logout").show();
+					} else {
+						errMsg(msg.errCode);
 					}
 				});
 			}
@@ -18,23 +22,52 @@
 				$.ajax({
 					type: "POST",
 					url: "http://stark-sands-5954.herokuapp.com/user/add/",
-					data: {user: "alex", password: "test"}
+					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {
 						alert(msg.count);
+						$("#count").html("You have logged in "+msg.count+" times.");
+						$("#Login").hide();
+						$("#Logout").show();
+					} else {
+						errMsg(msg.errCode);
 					}
 				});
+			}
+			function errMsg(errCode) {
+				switch (errCode) {
+					case -1:
+						$("#warning").html("Invalid credentials. Please try again.");
+						break;
+					case -2:
+						$("#warning").html("User already exists.");
+						break;
+					case -3:
+						$("#warning").html("Invalid username. It can not be blank and must be 128 characters or shorter.")
+						break;
+					case -4:
+						$("#warning").html("Invalid password. Must be 128 characters or shorter.")
+						break;
+				}
 			}
 		</script>
 	</head>
 	<body>
 		<form id="Login">
-			<label>User: </label>
-			<input type='text' id='user' name='user'><br>
+        	<label id="warning"></label>
+        	<label>Please enter your credentials.</label><br>
+		  <label>User: </label>
+		  <input type='text' id='user' name='user'>
+		  <br>
 			<label>Password: </label>
 			<input type='password' id='password' name='password'> <br>
-			<input type='button' Value='Log In' onclick="login();">
-			<input type='button' value='Add User' onclick="add()">
+			<input type='button' Value='Log In' onClick="login();">
+			<input type='button' value='Add User' onClick="add()">
 		</form>
+        <form id="Logout" style="display:none">
+        	<label id="count"></label> <br>
+  			<input type='button' id="logoutb" onClick="location.reload()">
+            
+        </form>
 	</body>
 </html>
