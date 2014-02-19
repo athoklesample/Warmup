@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
-    PROJECT_PATH + '/templates/'
+    os.path.join(BASE_DIR, '/templates/')
 )
 
 # Quick-start development settings - unsuitable for production
