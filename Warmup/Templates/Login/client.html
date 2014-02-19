@@ -9,7 +9,10 @@
 					url: "http://stark-sands-5954.herokuapp.com/user/login/",
 					data: {user: "alex", password: "test"}
 				}).done(function(msg) {
-					alert(msg);
+					resp = JSON.parse(msg);
+					if (resp.errCode == 1) {
+						alert(resp.count);
+					}
 				});
 			}
 			function add() {
@@ -18,7 +21,10 @@
 					url: "http://stark-sands-5954.herokuapp.com/user/add/",
 					data: {user: "alex", password: "test"}
 				}).done(function(msg) {
-					alert(msg);
+					resp = JSON.parse(msg);
+					if (resp.errCode == 1) {
+						alert(resp.count);
+					}
 				});
 			}
 		</script>
