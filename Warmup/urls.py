@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/', 'Login.views.main'),
-    url(r'^user/login/','Login.views.main'),
-    url(r'^user/add/','Login.views.main'),
-    url(r'^TESTAPI/resetFixture/','Login.views.main'),
-    url(r'^TESTAPI/unitTests/', 'Login.views.main')
+    url(r'^login', 'Login.views.main'),
+    url(r'^user/login','Login.views.main'),
+    url(r'^user/add','Login.views.main'),
+    url(r'^TESTAPI/resetFixture','Login.views.main'),
+    url(r'^TESTAPI/unitTests', 'Login.views.main')
 )
