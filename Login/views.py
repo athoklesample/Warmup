@@ -12,17 +12,17 @@ from subprocess import Popen,PIPE
 def main(request):
     if request.method == "POST":
         value = 0
-        if request.path == "/user/login/":
+        if request.path == "/user/login" or request.path == "/user/login/":
             value = UsersModel().login(user=request.POST['user'],password=request.POST['password'])
-        elif request.path == "/user/add/":
+        elif request.path == "/user/add" or request.path == "/user/add/":
             value = UsersModel().add(user=request.POST['user'],password=request.POST['password'])
         if value > 0:
             return HttpResponse(json.dumps({"errCode":1,"count":value}),content_type='application/json', status=200)
         elif value < 0:
             return HttpResponse(json.dumps({"errCode":value}),content_type='application/json', status=200)
-        if request.path =="/TESTAPI/resetFixture/":
+        if request.path =="/TESTAPI/resetFixture" or request.path =="/TESTAPI/resetFixture/":
             return HttpResponse(json.dumps({"errCode":UsersModel().TESTAPI_resetFixture()}),content_type='application/json', status=200)
-        elif request.path == "/TESTAPI/unitTests/":
+        elif request.path == "/TESTAPI/unitTests" or request.path == "/TESTAPI/unitTests/":
             results = Popen("python manage.py test Login".split(),stderr=PIPE,shell=False).communicate()[1]
             char = results.rfind("Ran")+4
             numTests = results[char:char+2]
