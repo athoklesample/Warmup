@@ -12,9 +12,9 @@ from subprocess import Popen,PIPE
 def main(request):
     if request.method == "POST":
         value = 0
-        if request.path == "/user/login" or request.path == "/user/login/":
+        if request.path == "/users/login" or request.path == "/users/login/":
             value = UsersModel().login(user=request.POST['user'],password=request.POST['password'])
-        elif request.path == "/user/add" or request.path == "/user/add/":
+        elif request.path == "/users/add" or request.path == "/users/add/":
             value = UsersModel().add(user=request.POST['user'],password=request.POST['password'])
         if value > 0:
             return HttpResponse(json.dumps({"errCode":1,"count":value}),content_type='application/json', status=200)

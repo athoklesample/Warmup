@@ -6,7 +6,7 @@
 			function login() {
 				$.ajax({
 					type: "POST",
-					url: window.location+"user/login",
+					url: window.location+"users/login",
 					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {
@@ -21,7 +21,7 @@
 			function add() {
 				$.ajax({
 					type: "POST",
-					url: window.location+"user/add",
+					url: window.location+"users/add",
 					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {

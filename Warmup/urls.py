@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'Login.views.main'),
-    url(r'^user/login','Login.views.main'),
-    url(r'^user/add','Login.views.main'),
+    url(r'^users/login','Login.views.main'),
+    url(r'^users/add','Login.views.main'),
     url(r'^TESTAPI/resetFixture','Login.views.main'),
     url(r'^TESTAPI/unitTests', 'Login.views.main')
 )
