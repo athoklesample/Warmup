@@ -6,7 +6,7 @@
 			function login() {
 				$.ajax({
 					type: "POST",
-					url: "http://stark-sands-5954.herokuapp.com/user/login/",
+					url: window.location+"user/login",
 					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {
@@ -21,11 +21,10 @@
 			function add() {
 				$.ajax({
 					type: "POST",
-					url: "http://stark-sands-5954.herokuapp.com/user/add/",
+					url: window.location+"user/add",
 					data: {user: $("#user").val(), password: $("#password").val()}
 				}).done(function(msg) {
 					if (msg.errCode == 1) {
-						alert(msg.count);
 						$("#count").html("You have logged in "+msg.count+" times.");
 						$("#Login").hide();
 						$("#Logout").show();
@@ -53,21 +52,26 @@
 		</script>
 	</head>
 	<body>
-		<form id="Login">
-        	<label id="warning"></label>
-        	<label>Please enter your credentials.</label><br>
-		  <label>User: </label>
-		  <input type='text' id='user' name='user'>
-		  <br>
-			<label>Password: </label>
-			<input type='password' id='password' name='password'> <br>
-			<input type='button' Value='Log In' onClick="login();">
-			<input type='button' value='Add User' onClick="add()">
-		</form>
-        <form id="Logout" style="display:none">
-        	<label id="count"></label> <br>
-  			<input type='button' id="logoutb" onClick="location.reload()">
+    	<div>
+        	<center>
+                <form id="Login" style="inline-box-align: last; margin:10px,20px,10px,20px">
+                    <label id="warning"></label>
+                    <br>
+                    <label>Please enter your credentials.</label><br>
+                  	<label>User: </label>
+                  	<input type='text' id='user' name='user'>
+                  	<br>
+                    <label>Password: </label>
+                    <input type='password' id='password' name='password'> <br>
+                    <input type='button' Value='Log In' onClick="login();">
+                    <input type='button' value='Add User' onClick="add()">
+                </form>
+        		<form id="Logout" style="display:none">
+        			<label id="count"></label> <br>
+  					<input type='button' value="Log Out" onClick="location.reload()">
             
-        </form>
+       			 </form>
+             </center>
+         </div>
 	</body>
 </html>
